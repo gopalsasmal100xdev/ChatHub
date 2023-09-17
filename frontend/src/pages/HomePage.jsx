@@ -1,21 +1,53 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import {
+  Box,
+  Container,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from "@chakra-ui/react";
+import Login from "../components/Authentication/Login";
+import Signup from "../components/Authentication/Signup";
 
 const HomePage = () => {
-  const [chats, setChats] = useState([]);
-  useEffect(() => {
-    (async () => {
-      const { data } = await axios.get("http://localhost:5000/demo/api/chat");
-      console.log(data);
-      setChats(data);
-    })();
-  }, []);
   return (
-    <div>
-      {chats.map((chat) => (
-        <h1 key={chat._id}>{chat.chatName}</h1>
-      ))}
-    </div>
+    <Container maxW={"xl"} centerContent>
+      <Box
+        d="flex"
+        justifyContent="center"
+        p={3}
+        bg="white"
+        w="100%"
+        m="40px 0 15px 0"
+        borderRadius="lg"
+        borderWidth="1px">
+        <Text
+          align={"center"}
+          fontWeight={"bold"}
+          fontSize="4xl"
+          fontFamily="Work sans">
+          Chat Hub
+        </Text>
+      </Box>
+      <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
+        <Tabs isFitted variant="soft-rounded">
+          <TabList mb="1em">
+            <Tab>Login</Tab>
+            <Tab>Sign Up</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <Login />
+            </TabPanel>
+            <TabPanel>
+              <Signup />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Box>
+    </Container>
   );
 };
 
