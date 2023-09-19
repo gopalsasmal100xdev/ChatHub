@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 const UserSchema = mongoose.Schema(
   {
     name: {
@@ -7,6 +8,7 @@ const UserSchema = mongoose.Schema(
     },
     email: {
       type: String,
+      unique: true,
       required: true,
     },
     password: {
@@ -15,7 +17,6 @@ const UserSchema = mongoose.Schema(
     },
     pic: {
       type: String,
-      required: true,
       default:
         "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
     },
