@@ -29,4 +29,11 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-module.exports = { protect };
+/**
+ * Only admin can access
+ */
+const onlyAdmin = asyncHandler(async (req, res, next) => {
+  next();
+});
+
+module.exports = { protect, onlyAdmin };

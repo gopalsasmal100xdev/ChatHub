@@ -1,6 +1,6 @@
 const express = require("express");
 const Router = express.Router();
-const { protect } = require("../middleware/authMiddleware");
+const { protect, onlyAdmin } = require("../middleware/authMiddleware");
 const {
   accessChat,
   fetchChats,
@@ -13,7 +13,8 @@ const {
 Router.route("/").get(protect, fetchChats).post(protect, accessChat);
 Router.route("/group").post(protect, createGroupChat);
 Router.route("/rename").put(protect, renameGroupChat);
-Router.route("/groupRemove").put(protect, removeFromGroupChat);
-Router.route("/groupAdd").put(protect, addToGroupChat);
+// only admin can access this routes
+Router.route("/groupRemove").put(protect, onlyAdmin, removeFromGroupChat);
+Router.route("/addMemberInGroup").put(protect, onlyAdmin, addToGroupChat);
 
 module.exports = Router;

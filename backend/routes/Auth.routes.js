@@ -7,8 +7,8 @@ const { registerUser, loginUser } = require("../controller/Auth.controller");
 /**
  * @dev route map
  * '/api/' get request for all users
- * '/api/users/login' login user
- *  '/api/users/signup' register user
+ * '/api/user/login' login user
+ *  '/api/user/signup' register user
  */
 
 Router.route("/").get(protect, allUsers);
