@@ -18,7 +18,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [confirmpassword, setConfirmpassword] = useState("");
   const [password, setPassword] = useState("");
-  const [pic, setPic] = useState(null);
+  const [pic, setPic] = useState();
   const [loading, setLoading] = useState(false);
 
   const handleClickPassword = () => setShowPassword(!showPassword);
@@ -101,9 +101,14 @@ const Signup = () => {
           "Content-Type": "application/json",
         },
       };
+      const userInfo = { name, email, password, pic };
+      if (!userInfo.pic) {
+        userInfo.pic =
+          "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg";
+      }
       const { data } = await axios.post(
         "http://localhost:5000/api/user/signup ",
-        { name, email, password, pic },
+        userInfo,
         config
       );
       toast({
