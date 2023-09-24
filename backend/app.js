@@ -7,6 +7,7 @@ const { errorHandler, notFound } = require("./middleware/errorMiddleware");
 const chatRoutes = require("./routes/Chat.routes");
 
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/demo", demo);
 app.use("/api", AuthRouter);

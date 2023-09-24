@@ -9,7 +9,7 @@ export const ChatState = () => {
 const ChatProvider = ({ children }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState({});
-  const [selectedChat, setSelectedChat] = useState();
+  const [selectedChat, setSelectedChat] = useState({});
   const [notification, setNotification] = useState([]);
   const [chats, setChats] = useState([]);
 
@@ -19,7 +19,7 @@ const ChatProvider = ({ children }) => {
       navigate("/");
     }
     setUser(userInfo);
-  }, [user]);
+  }, []);
   return (
     <>
       <ChatContext.Provider

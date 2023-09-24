@@ -107,7 +107,7 @@ const Signup = () => {
           "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg";
       }
       const { data } = await axios.post(
-        "http://localhost:5000/api/user/signup ",
+        "http://localhost:5000/api/user/signup",
         userInfo,
         config
       );

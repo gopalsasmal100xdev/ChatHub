@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChatState } from "../../context/ChatProvider";
 import ProfileModal from "./ProfileModal";
 import { useNavigate } from "react-router-dom";
@@ -72,7 +72,6 @@ const SideDrawer = () => {
         config
       );
       setLoading(false);
-      console.log(data);
       setSearchResult(data);
     } catch (error) {
       toast({
@@ -119,6 +118,15 @@ const SideDrawer = () => {
       setLoadingChat(false);
     }
   };
+
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      if (searchQuery) handleserach();
+    }, 500);
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, [searchQuery]);
 
   return (
     <>
@@ -176,7 +184,9 @@ const SideDrawer = () => {
                 placeholder="Search by name or email"
                 mr={2}
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                }}
               />
               <Button onClick={handleserach}>Go</Button>
             </Box>

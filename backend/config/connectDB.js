@@ -6,9 +6,7 @@ function connectDB(url) {
     mongoose
       .connect(url)
       .then((db) => {
-        console.log(
-          `Mongodb connections established ${db.connection.host}`.yellow.dim
-        );
+        console.log(`Mongodb connections established`.cyan.bold);
       })
       .catch((err) => {
         console.log(`Mongodb connection error: ${err}`.red);
